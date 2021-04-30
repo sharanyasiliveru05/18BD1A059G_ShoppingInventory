@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" >
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <nav class="navbar text-white navbar-expand-sm fixed-top" style="background-color: steelblue;">
+        <a class="navbar-brand" href="/">Shopping Inventory</a>
+        <ul class="nav nav-pills ml-auto">
+            <li class="nav-item">
+                <a href="/" class="nav-link">Home</a>
+            </li>
+            <li class="nav-item">
+                <a href="/add" class="nav-link">Add Item</a>
+            </li>
+        </ul>
+    </nav>
+    <div class="w-100 d-flex justify-content-center">
+        <form class="mt-5" style="width: 30% !important;" action="/edit" method="POST">
+            <input type="number" id="id" name="id" hidden value="<%=data[0]['id'] %>" /><br><br>
+            <p class="text-center">For Item-Id: <%= data[0]["id"]%></p>
+            <input type="number" id="actual_price" name="actual_price" required value="<%= data[0]['actual_price'] %>" placeholder="enter actual price"/><br><br>
+            <input type="number" id="selling_price" name="selling_price" required value="<%= data[0]['selling_price'] %>" placeholder="enter selling price" /><br><br>
+            <input type="submit" class="btn text-white btn-success" id="s"  value="Edit"/>
+        </form>
+    </div>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</body>
+</html>

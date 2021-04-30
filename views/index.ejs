@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width= device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" >
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <nav class="navbar text-white navbar-expand-sm fixed-top">
+        <a class="navbar-brand" href="/">Shopping Inventory</a>
+        <ul class="nav nav-pills ml-auto">
+            <li class="nav-item">
+                <a href="/" class="nav-link">Home</a>
+            </li>
+            <li class="nav-item">
+                <a href="/add" class="nav-link">Add Item</a>
+            </li>
+        </ul>
+    </nav>
+    <br><br>
+    <div id="table" class="w-100 d-flex justify-content-center mt-5">
+        <table style="width: 95%;display: initial; overflow: scroll;" id="t1">
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Item</th>
+                    <th>Quantity</th>
+                    <th>Actual price</th>
+                    <th>Selling price</th>
+                    <th>Supplier</th>
+                    <th></th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>       
+                <% for(let i=0;i<items.length;i++)
+                { %>
+                <tr>
+                    <td><%=items[i]["id"]%></td>
+                    <td><%=items[i]["item"]%></td>
+                    <td><%=items[i]["quantity"]%></td>
+                    <td><%=items[i]["actual_price"]%></td>
+                    <td><%=items[i]["selling_price"]%></td>
+                    <td><%=items[i]["supplier"]%></td>
+                    <td ><a id="a1" href="/edit?id=<%=items[i]["id"]%>">Edit</a></td>
+                    <td ><a id="a2" href="/delete?id=<%=items[i]["id"]%>">Delete</a></td>
+                    
+                </tr>
+                <% } %>
+            </tbody>
+        </table>
+    </div>
+    <div class="mt-3 mx-4">
+        <button class="btn btn-success ml-2" id="print">Print</button>
+        <a class="btn btn-success" href='ItemDetails.xlsx'download>Download Excel</a>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script>
+        let table=document.getElementById("table");
+        let printBtn=document.getElementById('print');
+        printBtn.onclick=()=>{
+            let printWin=window.open("","");
+            printWin.document.write(table.innerHTML);
+            printWin.focus();
+            printWin.stop();
+            printWin.print();
+            printWin.close();
+        }
+    </script>
+</body>
+</html>
